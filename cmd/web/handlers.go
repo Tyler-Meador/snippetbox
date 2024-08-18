@@ -31,6 +31,10 @@ type userLoginForm struct {
 	validator.Validator `form:"-"`
 }
 
+func ping(response http.ResponseWriter, request *http.Request) {
+	response.Write([]byte("OK"))
+}
+
 func (app *application) home(response http.ResponseWriter, request *http.Request) {
 	snippets, err := app.snippets.Latest()
 	if err != nil {
