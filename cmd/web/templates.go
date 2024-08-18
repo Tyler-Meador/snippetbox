@@ -37,7 +37,7 @@ func newTemplateCache() (map[string]*template.Template, error) {
 
 		patterns := []string{
 			"html/base.html",
-			"html/partials/*.html",
+			"html/partials/*html",
 			page,
 		}
 
@@ -53,5 +53,9 @@ func newTemplateCache() (map[string]*template.Template, error) {
 }
 
 func humanDate(humanTime time.Time) string {
-	return humanTime.Format("02 Jan 2006 at 15:04")
+	if humanTime.IsZero() {
+		return ""
+	}
+
+	return humanTime.UTC().Format("02 Jan 2006 at 15:04")
 }
