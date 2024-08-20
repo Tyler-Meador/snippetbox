@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log/slog"
 	"net/http"
+	"runtime/debug"
 	"time"
 
 	"github.com/go-playground/form/v4"
@@ -16,9 +17,17 @@ func (app *application) serverError(response http.ResponseWriter, request *http.
 	var (
 		method = request.Method
 		uri    = request.URL.RequestURI()
+		trace  = string(debug.Stack())
 	)
 
 	app.logger.Error(err.Error(), slog.String("method", method), slog.String("uri", uri))
+
+	if app.debug {
+		body := fmt.Sprintf("%s\n%s", err, trace)
+		http.Error(response, body, http.StatusInternalServerError)
+		return
+	}
+
 	http.Error(response, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 }
 

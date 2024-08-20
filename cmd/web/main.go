@@ -28,6 +28,7 @@ type application struct {
 	templateCache  map[string]*template.Template
 	formDecoder    *form.Decoder
 	sessionManager *scs.SessionManager
+	debug          bool
 }
 
 func main() {
@@ -45,6 +46,7 @@ func main() {
 
 	addr := flag.String("addr", ":4000", "HTTP network address")
 	dsn := flag.String("dsn", fmt.Sprintf("web:%s@/snippetbox?parseTime=true", sqlPass), "MySQL data source name")
+	debug := flag.Bool("debug", false, "Enter debug mode")
 	flag.Parse()
 
 	db, err := openDB(*dsn)
@@ -75,6 +77,7 @@ func main() {
 		templateCache:  templateCache,
 		formDecoder:    formDecoder,
 		sessionManager: sessionManager,
+		debug:          *debug,
 	}
 
 	tlsConfig := &tls.Config{
