@@ -1,4 +1,4 @@
-# Snippetbox - A Pastebin Clone
+# Snippetbox
 
 ![Snippet Box Front Page](snippetbox.png)
 
