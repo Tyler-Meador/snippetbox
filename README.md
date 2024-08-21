@@ -1,5 +1,7 @@
 # Snippetbox - A Pastebin Clone
 
+![Snippet Box Front Page](snippetbox.png)
+
 ## Overview
 
 Snippetbox was developed by coding along the [Let's Go book by Alex Edwards](https://lets-go.alexedwards.net/)
