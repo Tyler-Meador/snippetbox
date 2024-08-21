@@ -35,11 +35,26 @@ SQL_PASSWORD = "Your Password"
 ```
 Execute the following command to generate the database:
 ```sh
-go run ./internal/models/database/
+go run ./cmd/web -setup=true
+```
+
+This will generate a database called "snippetbox" that contains the following tables:
+```sh
+snippets(id, title, content, created, expires)
+```
+
+```sh
+users(id, name, email, hashed_password, created)
 ```
 
 ### Starting The Application
 Execute the following command:
 ```sh
 go run ./cmd/web
+```
+
+### Testing
+Execute the following command to run the included test suite:
+```sh
+go test -v ./...
 ```

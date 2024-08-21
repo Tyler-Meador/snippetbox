@@ -42,12 +42,27 @@ func main() {
 		os.Exit(1)
 	}
 
+	sqlUser := os.Getenv("SQL_USER")
 	sqlPass := os.Getenv("SQL_PASS")
 
 	addr := flag.String("addr", ":4000", "HTTP network address")
-	dsn := flag.String("dsn", fmt.Sprintf("web:%s@/snippetbox?parseTime=true", sqlPass), "MySQL data source name")
+	dsn := flag.String("dsn", fmt.Sprintf("%s:%s@/snippetbox?parseTime=true", sqlUser, sqlPass), "MySQL data source name")
+
 	debug := flag.Bool("debug", false, "Enter debug mode")
+	setup := flag.Bool("setup", false, "Create DB")
+
 	flag.Parse()
+
+	if *setup {
+		err := models.NewDB(sqlUser, sqlPass)
+		if err != nil {
+			logger.Error(err.Error())
+			os.Exit(1)
+		}
+
+		logger.Info("DB Created")
+		os.Exit(1)
+	}
 
 	db, err := openDB(*dsn)
 	if err != nil {
