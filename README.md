@@ -33,7 +33,7 @@ SQL_PASSWORD = "Your Password"
 ```
 Execute the following command to generate the database:
 ```sh
-go run ./inter/models/database/
+go run ./internal/models/database/
 ```
 
 ### Starting The Application
