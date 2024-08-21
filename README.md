@@ -21,13 +21,11 @@ Snippetbox is a full stack web application that attempts to clone the functional
     - Unit Tests
     - E2E Tests
 
-## Executing
-
-### Requirements:
+## Requirements:
     - MySql
     - Go Version 1.20 +
 
-### Configuring:
+## Configuring:
 Create a ".Env" file with the following properties:
 ```sh
 SQL_USER = YourUsername
@@ -47,13 +45,13 @@ snippets(id, title, content, created, expires)
 users(id, name, email, hashed_password, created)
 ```
 
-### Starting The Application
+## Starting The Application
 Execute the following command:
 ```sh
 go run ./cmd/web
 ```
 
-### Testing
+## Testing
 Execute the following command to run the included test suite:
 ```sh
 go test -v ./...
