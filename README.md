@@ -31,7 +31,7 @@ Snippetbox is a full stack web application that attempts to clone the functional
 Create a ".Env" file with the following properties:
 ```sh
 SQL_USER = YourUsername
-SQL_PASSWORD = YourPassword
+SQL_PASS = YourPassword
 ```
 Execute the following command to generate the database:
 ```sh
