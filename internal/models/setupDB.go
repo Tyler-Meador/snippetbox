@@ -58,6 +58,23 @@ func NewDB(sqlUser, sqlPass string) error {
 		return err
 	}
 
+	_, err = db.Exec(`
+		CREATE TABLE sessions (
+			token CHAR(43) PRIMARY KEY,
+			data BLOB NOT NULL,
+			expiry TIMESTAMP(6) NOT NULL
+		);`)
+	if err != nil {
+		db.Close()
+		return err
+	}
+
+	_, err = db.Exec("CREATE INDEX sessions_expiry_idx ON sessions (expiry)")
+	if err != nil {
+		db.Close()
+		return err
+	}
+
 	_, err = db.Exec("ALTER TABLE users ADD CONSTRAINT users_uc_email UNIQUE (email)")
 	if err != nil {
 		db.Close()
