@@ -45,6 +45,23 @@ snippets(id, title, content, created, expires)
 users(id, name, email, hashed_password, created)
 ```
 
+```sh
+sessions(token, data, expiry)
+```
+
+You will also need to generate TLS certificates.
+To do so make sure you are in the root directory and then run the following command:
+
+```sh
+mkdir tls
+cd tls
+
+go run /usr/local/go/src/crypto/tls/generate_cert.go --rsa-bits=2048 --host=localhost
+```
+
+The path to "generate_cert.go" may be different from your system.
+
+
 ## Starting The Application
 Execute the following command:
 ```sh
